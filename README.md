@@ -3,8 +3,8 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2603.02692">
     <img src="https://img.shields.io/badge/arXiv-2603.02692-b31b1b.svg" alt="arXiv">
-    <a href="https://diffusion-sr.github.io/FiDeSR/"><img src="https://img.shields.io/badge/Project-Page-blue" alt="Project"></a>
   </a>
+    <a href="https://diffusion-sr.github.io/FiDeSR/"><img src="https://img.shields.io/badge/Project-Page-blue" alt="Project"></a>
 </p>
 <p align="center">
   ⭐ <b>Accepted by CVPR 2026</b>
