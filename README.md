@@ -78,6 +78,11 @@ FiDeSR achieves the best trade-off between fidelity (PSNR↑, SSIM↑, LPIPS↓)
 ## License
 This project is released under the Apache 2.0 license.
 
+## Acknowledgments
+
+Our project builds upon [PiSA-SR](https://github.com/csslc/PiSA-SR). We sincerely thank the authors for their awesome work.
+
+
 ## Citations
 ```bash
 @article{kim2026fidesr,
