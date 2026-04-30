@@ -1,0 +1,7 @@
+__pycache__/
+*.pth
+*.pkl
+preset/
+experiments/
+logs/
+nohup.out
