@@ -110,6 +110,8 @@ if __name__ == "__main__":
     parser.add_argument("--hf_order", type=int, default=2, help="HF Butterworth order")
     parser.add_argument("--hf_dmap_gamma", type=float, default=1.2,
                         help="Exponent for HF spatial D-map gating (>=1 emphasizes edges)")
+    parser.add_argument("--lf_hf_merge_ratio", type=float, default=0.5,
+                        help="When both LF/HF are enabled: final latent = ratio*LF + (1-ratio)*HF")
 
     parser.add_argument("--lrrb_in_ch", type=int, default=8)
     parser.add_argument("--lrrb_mid_ch", type=int, default=64)
