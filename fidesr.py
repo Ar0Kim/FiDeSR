@@ -524,10 +524,13 @@ class FiDeSR_eval(nn.Module):
         z = encoded_control - model_pred
         zl = z
         zf = z
+        lf_active = False
+        hf_active = False
 
         # --- LF enhancement ---
         lf_scale  = getattr(self.args, "lf_scale", 0.1)
         if lf_scale > 0:
+            lf_active = True
             lf_rc        = getattr(self.args, "lf_rc", 0.30)
             lf_order     = getattr(self.args, "lf_order", 2)
             lf_tau       = getattr(self.args, "lf_tau", 0.5)
@@ -555,6 +558,7 @@ class FiDeSR_eval(nn.Module):
         # --- HF enhancement ---
         hf_scale   = getattr(self.args, "hf_scale", 0.1)
         if hf_scale > 0:
+            hf_active = True
             hf_rc          = getattr(self.args, "hf_rc", 0.30)
             hf_order       = getattr(self.args, "hf_order", 2)
             hf_dmap_gamma  = getattr(self.args, "hf_dmap_gamma", 1.2)
@@ -575,7 +579,16 @@ class FiDeSR_eval(nn.Module):
 
             zf = z + hf_scale * M_hf * delta_hp
 
-        x_denoised = (zl + zf) * 0.5
+        if lf_active and hf_active:
+            merge_ratio = getattr(self.args, "lf_hf_merge_ratio", 0.5)
+            merge_ratio = max(0.0, min(1.0, merge_ratio))
+            x_denoised = merge_ratio * zl + (1.0 - merge_ratio) * zf
+        elif lf_active:
+            x_denoised = zl
+        elif hf_active:
+            x_denoised = zf
+        else:
+            x_denoised = z
         output_image = self.vae.decode(x_denoised / self.vae.config.scaling_factor).sample.clamp(-1, 1)
 
         torch.cuda.synchronize()
