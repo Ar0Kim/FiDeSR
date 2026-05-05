@@ -58,8 +58,8 @@ python test_fidesr.py \
   --upscale 4 \
   --input_image preset/test_datasets \
   --output_dir experiments/test \
-  --hf_scale 0.3 \
-  --lf_scale 0
+  --hf_scale 0.2 \
+  --lf_scale 0.2
 ```
 
 ## 🖼️ Results
