@@ -444,12 +444,16 @@ class FiDeSR_eval(nn.Module):
         return D_lat.clamp(0, 1)
 
     def _make_channel_gate(self, encoded_control, rc=0.30, order=2, tau=0.5, sharp=8.0):
-        LP = self._butterworth_lpf_fft(encoded_control, rc=rc, order=order)
-        num = (LP.pow(2).sum(dim=(-2,-1), keepdim=True)).sqrt()
-        den = (encoded_control.pow(2).sum(dim=(-2,-1), keepdim=True)).sqrt() + 1e-6
-        ratio = (num/den).clamp(0,1)
-        M_ch = torch.sigmoid(sharp*(ratio - tau))
-        return M_ch
+        x = encoded_control.float()
+        LP = self._butterworth_lpf_fft(x, rc=rc, order=order).float()
+
+        num = LP.pow(2).sum(dim=(-2, -1), keepdim=True).clamp_min(1e-12).sqrt()
+        den = x.pow(2).sum(dim=(-2, -1), keepdim=True).clamp_min(1e-12).sqrt()
+
+        ratio = (num / den).clamp(0, 1)
+        M_ch = torch.sigmoid(float(sharp) * (ratio - float(tau)))
+
+        return M_ch.to(dtype=encoded_control.dtype)
 
     def _get_dtype(self, precision):
         """Get the appropriate data type based on precision."""
