@@ -1,19 +1,21 @@
-﻿# FiDeSR: High-Fidelity and Detail-Preserving One-Step Diffusion Super-Resolution
+# FiDeSR: High-Fidelity and Detail-Preserving One-Step Diffusion Super-Resolution
 
 <p align="center">
-  <a href="https://arxiv.org/abs/2603.02692">
-    <img src="https://img.shields.io/badge/arXiv-2603.02692-b31b1b.svg" alt="arXiv">
+  <a href="https://openaccess.thecvf.com/content/CVPR2026/html/Kim_FiDeSR_High-Fidelity_and_Detail-Preserving_One-Step_Diffusion_Super-Resolution_CVPR_2026_paper.html">
+    <img src="https://img.shields.io/badge/Paper-CVPR%202026-red" alt="Paper">
   </a>
-    <a href="https://diffusion-sr.github.io/FiDeSR/"><img src="https://img.shields.io/badge/Project-Page-blue" alt="Project"></a>
+  <a href="https://diffusion-sr.github.io/FiDeSR/">
+    <img src="https://img.shields.io/badge/Project-Page-blue" alt="Project">
+  </a>
 </p>
+
 <p align="center">
   ⭐ <b>Accepted by CVPR 2026</b>
 </p>
 
-
 ## 🔥 News
 - **CVPR 2026 Accepted**
-- **[2026.03] arXiv preprint:** [arXiv:2603.02692](https://arxiv.org/abs/2603.02692)
+- **[2026.03] Paper:** [CVPR 2026 Paper](https://openaccess.thecvf.com/content/CVPR2026/html/Kim_FiDeSR_High-Fidelity_and_Detail-Preserving_One-Step_Diffusion_Super-Resolution_CVPR_2026_paper.html)
 - **[2026.04] Code and pretrained model are released** (training / inference / pretrained models).
 
 ## 📌 Framework
@@ -32,7 +34,6 @@ conda activate fidesr
 pip install -r requirements.txt
 ```
 
-
 ## ⚡ Quick Inference
 
 ### Step 1: Download the Pretrained Models
@@ -46,6 +47,7 @@ Download the following models:
 | FiDeSR | FiDeSR checkpoint (LoRA + LRRB weights) | [fidesr.pkl](https://huggingface.co/jmjin2/FiDeSR/tree/main) |
 
 ### Step 2: Prepare the StableSR test datasets
+
 Download StableSR testsets from [HuggingFace](https://huggingface.co/datasets/Iceclear/StableSR-TestSets/tree/main).
 
 ### Step 3: Run Inference
@@ -63,32 +65,38 @@ python test_fidesr.py \
 ```
 
 ## 🖼️ Results
+
 ### Trade-off Comparison
+
 FiDeSR achieves the best trade-off between fidelity (PSNR↑, SSIM↑, LPIPS↓) and perceptual quality (MANIQA↑) among existing methods including DiffBIR, PiSA-SR, SeeSR, AddSR, OSEDiff, StableSR, SinSR, and PASD.
+
 <p align="center">
   <img src="figs/teaser.png" width="95%">
 </p>
 
 ### Visual Comparison
+
 <p align="center">
   <img src="figs/result1.png" width="95%">
   <img src="figs/result2.png" width="95%">
 </p>
 
 ## License
+
 This project is released under the Apache 2.0 license.
 
 ## Acknowledgments
 
 Our project builds upon [PiSA-SR](https://github.com/csslc/PiSA-SR). We sincerely thank the authors for their awesome work.
 
-
 ## Citations
+
 ```bash
-@article{kim2026fidesr,
+@inproceedings{kim2026fidesr,
   title={FiDeSR: High-Fidelity and Detail-Preserving One-Step Diffusion Super-Resolution},
   author={Kim, Aro and Jang, Myeongjin and Moon, Chaewon and Shin, Youngjin and Jeong, Jinwoo and Park, Sang-hyo},
-  journal={arXiv preprint arXiv:2603.02692},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={38270--38280},
   year={2026}
 }
 ```
